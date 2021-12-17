@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="es" style="height: 100%;">
+  <head>
+    <meta charset="utf-8">
+    <meta name="referrer" content="strict-origin">
+    <meta property="og:title" content="Cosplaÿbo" />
+    <meta property="og:site_name" content="Cosplaÿbo">
+    <meta property="og:description" content="Coming soon..." />
+    <meta property="og:image" content="https://cosplaybo.com/imgs/logo.png" />
+    <meta property="og:type" itemprop="image" content="website" />
+    <meta property="og:updated_time" content="1639659732" />
+
+    <title>Cosplaÿbo - Coming soon...</title>
+
+    <script src="js/angular-1.2.14/angular.min.js" type="text/javascript"></script>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+    <script src="js/main.js" type="text/javascript"></script>
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="css/font-awesome.css" rel="stylesheet" media="screen">
+    <link href="../css/main.css" rel="stylesheet" media="screen">
+  </head>
+  <body ng-app="cosplaybo">
+    <div ng-controller="VerifierController">
+      <div style="display: flex; width: 100%; height: 20vh; margin-top: 20px; align-items: center; justify-content: center;">
+        <img src="../imgs/banner.png" height="100%" style="min-height: 85px;"></img>
+      </div>
+
+      <div style="min-height: 200px; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+        <div>
+          <div ng-if="loading">
+            <i class="fa fa-4x fa-spinner fa-spin"></i>
+          </div>
+
+          <h3 ng-if="!loading && data.error" style="max-width: 65vw;">
+            Ha ocurrido un error
+          </h3>
+          <h3 ng-if="!loading && !data.verified" style="margin-top: 80px; max-width: 65vw;">
+            <div>
+              Oh no... Lamentamos comunicarte que tu cosplaÿbo no es original.
+            </div>
+            <br>
+            <div>
+              Puedes comunicarte con nosotros para, junto con nuestros especialistas, elaborar uno a la medida para ti que cumpla con nuestros estándares de calidad.
+            </div>
+            <br>
+            <div>
+              ¡Te esperamos!
+            </div>
+            <br>
+            <div class="is-flex">
+              <span>
+                <a href="https://wa.link/tbmxdq" title="By Yamasaki" style="text-decoration: none; color: #46b2ff;"><img src="icons/whatsapp.svg" alt="Whatsapp" height="40px"></img></a>
+              </span>
+              <span>
+                <a href="https://www.facebook.com/ChimeDesigns" title="ChimeDesigns" style="text-decoration: none; color: #46b2ff;"><img src="icons/facebook.svg" alt="Facebook" height="40px"></img></a>
+              </span>
+            </div>
+          </h3>
+
+          <div ng-if="!loading && data.verified" style="margin-top: 30px; text-align: center;">
+            <table>
+              <tbody>
+                <tr>
+                  <td>
+                    <img ng-src="{{ data.ownerPicture }}" style="width: 15vw;"></img>
+                  </td>
+                  <td style="font-size: 20px; padding: 10px;">x</td>
+                  <td>
+                    <img ng-src="{{ data.amiiboData.image }}" style="width: 15vw;"></img>
+                  </td>
+                  <td style="font-size: 20px; padding: 10px; text-align: center;">=</td>
+                  <td>
+                    <img ng-src="{{ data.image }}" style="min-height: 180px; height: 40vh;"></img>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="text-center" style="font-size: 20px;">
+                      {{ data.owner }}
+                    </div>
+                  </td>
+                  <td></td>
+                  <td>
+                    <div class="text-center" style="font-size: 20px;">
+                      {{ data.amiiboData.name }}
+                    </div>
+                  </td>
+                  <td></td>
+                  <td>
+                    <div class="text-center" style="font-size: 20px;">
+                      Elaborado {{ data.createdAt }}
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td colspan="666">
+                    <div class="is-flex" style="justify-content: center;">
+                      <h3 class="text-center" style="font-size: 20px; margin-top: 70px; max-width: 70vw;">
+                        <div ng-if="data.series === 0">
+                          ¡El primero de muchos!
+                        </div>
+                        <div ng-if="data.series === 1">
+                          Muchas gracias por confiar en nuestro proyecto, y ser parte de las primeras personas en adquirir uno de nuestros cosplaÿbos. ¡Estamos eternamente agradecidos contigo! ♥
+                        </div>
+                        <div ng-if="data.series === 2">
+                          <div>¡Muchas gracias por adquirir uno de nuestros cosplaÿbos!</div>
+                          <div>Esperamos que lo disfrutes mucho y te tomes muchas fotos junto a él 🤗</div>
+                        </div>
+
+                        <br>
+
+                        <div>
+                          Puedes ver todo lo que se puede hacer con tu cosplaÿbo en <a ng-href="{{ data.amiiboData.amiibolifeLink }}" title="Amiibo life" target="_blank" style="text-decoration: none; color: #46b2ff;">amiibo.life</a>
+                        </div>
+                      </h3>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
